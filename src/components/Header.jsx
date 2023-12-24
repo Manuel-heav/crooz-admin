@@ -1,15 +1,12 @@
 import { useContext } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { AuthContext } from "../context/AuthProvider";
+import { AuthContext } from "../context/AuthContext";
 
 const Header = () => {
-  // Access the user, logOut, and loading state from the AuthContext
   const { user, logOut, loading } = useContext(AuthContext);
 
-  // Use the useNavigate hook to programmatically navigate between pages
   const navigate = useNavigate();
 
-  // Handle user logout
   const handleSignOut = () => {
     logOut()
       .then(() => {
@@ -98,13 +95,11 @@ const Header = () => {
               >
                 <li>
                   <Link to="/profile">
-                    {/* Profile link */}
                     <span className="justify-between">Profile</span>
                   </Link>
                 </li>
                 <li>
                   <a onClick={handleSignOut}>Logout</a>
-                  {/* Logout button */}
                 </li>
               </ul>
             </div>
