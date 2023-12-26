@@ -8,21 +8,21 @@ const SimpleModal = ({ isOpen, onClose, email, grade, parentIdUrl, phoneNumber, 
 
   return (
     <div className="fixed top-0 right-0 bottom-0 left-0 z-50 flex items-center justify-center bg-orange-400 bg-opacity-30 overflow-auto">
-      <div className="h-full absolute bg-white p-6 rounded-md w-full max-w-screen-md overflow-hidden">
+      <div className="h-[95vh] absolute bg-white p-6 rounded-xl w-full max-w-screen-md overflow-hidden">
         <div className="flex justify-end">
           <button
             className="text-gray-600 hover:text-gray-800 focus:outline-none"
             onClick={onClose}
           >
-            <span className="text-2xl">&times;</span>
+            <span className="text-4xl m-5">&times;</span>
           </button>
         </div>
         <div className="overflow-auto max-h-[80vh]"> {/* Adjust max height as needed */}
-          <h3 className="text-xl font-semibold mb-4">{studentsName + studentsLastName}</h3>
+          <h3 className="text-xl font-semibold mb-4">{studentsName + " " + studentsLastName}</h3>
           {/* make the font bolder */}
           <p className="text-orange-500">Email: <span className='text-black'>{email}</span></p>
           <p className="text-orange-500">Grade: <span className='text-black'>{grade}</span></p>
-          <p className="text-orange-500">Student's Name: <span className='text-black'>{studentsName + studentsLastName}</span></p>
+          <p className="text-orange-500">Student's Name: <span className='text-black'>{studentsName + " " + studentsLastName}</span></p>
           <p className="text-orange-500">Phone Number: <span className='text-black'>{phoneNumber}</span></p>
           <p className="text-orange-500">School Address: <span className='text-black'>{schoolAddress}</span></p>
           {/* Images with max width to prevent overflow */}

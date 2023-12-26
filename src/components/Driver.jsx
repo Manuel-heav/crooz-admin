@@ -24,7 +24,7 @@ const Driver = () => {
   }, []);
 
   return (
-    <div className='overflow-hidden'>
+    <div className='overflow-hidden bg-orange-300 h-[100vh]'>
       <SideBar />
       <div className="w-2/3 mt-20 p-4 sm:ml-64">
         <div className="grid grid-cols-1 sm:grid-cols-2">

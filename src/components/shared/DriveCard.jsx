@@ -9,13 +9,13 @@ const SimpleModal = ({ isOpen, onClose, email, firstName, lastName, schoolAddres
   
     return (
       <div className="fixed top-0 right-0 bottom-0 left-0 z-50 flex items-center justify-center bg-orange-400 bg-opacity-30 overflow-auto">
-        <div className="h-full absolute bg-white p-6 rounded-md w-full max-w-screen-md overflow-hidden">
+        <div className="h-[95vh] absolute bg-white p-6 rounded-md w-full max-w-screen-md overflow-hidden">
           <div className="flex justify-end">
             <button
               className="text-gray-600 hover:text-gray-800 focus:outline-none"
               onClick={onClose}
             >
-              <span className="text-2xl">&times;</span>
+              <span className="text-4xl m-5">&times;</span>
             </button>
           </div>
           <div className="overflow-auto max-h-[80vh]"> {/* Adjust max height as needed */}
@@ -28,14 +28,14 @@ const SimpleModal = ({ isOpen, onClose, email, firstName, lastName, schoolAddres
             <p className="text-orange-500">Vehicle Capacity: <span className='text-black'>{vehicleCapacity}</span></p>
             <p className="text-orange-500">Phone Number: <span className='text-black'>{phoneNumber}</span></p>
             <p className="text-orange-500">Address: <span className='text-black'>{address}</span></p>
+            <p className="text-orange-500">Liscence Number: <span className='text-black'>{liscence}</span></p>
+
   
             {/* Images with max width to prevent overflow */}
             <p className="text-orange-500 text-center text-lg">Libre Image</p>
             <img className="max-w-full h-auto mb-5 mt-5" src={libreUrl} alt="" />
             <p className="text-orange-500 text-center text-lg mb-5 mt-5">Business Liscence: </p>
             <img className="max-w-full h-auto" src={businessUrl} alt="" />
-            <p className="text-orange-500 text-center text-lg mb-5 mt-5">Liscence Image: </p>
-            <img className="max-w-full h-auto" src={liscence} alt="" />
             <p className="text-orange-500 text-center text-lg mb-5 mt-5">Photo Image: </p>
             <img className="max-w-full h-auto" src={photoUrl} alt="" />
             <p className="text-orange-500 text-center text-lg mb-5 mt-5">ID Image: </p>
