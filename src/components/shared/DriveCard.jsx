@@ -1,47 +1,76 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom';
 
 // <Card key={item.id} email={item.email} grade={item.grade} parentIdUrl={item.parentIdUrl} phoneNumber={item.phoneNumber} schoolAddress={item.schoolAddress} studentIdUrl={item.studentIdUrl} studentPhotoUrl={item.studentPhotoUrl} studentsLastName={item.studentsLastName} studentsName={item.studentsName} />
 
-const SimpleModal = ({ isOpen, onClose, email, firstName, lastName, schoolAddress, vehicleCapacity, phoneNumber, address, libreUrl, businessUrl, liscence, photoUrl, idUrl, vehicleUrl }) => {
+const SimpleModal = ({ isOpen, onClose, email, firstName, lastName, schoolAddress, vehicleCapacity, phoneNumber, address, libreUrl, businessUrl, liscence, photoUrl, idUrl, vehicleUrl, telegram }) => {
     if (!isOpen) {
       return null;
     }
+    let telegramUrl = `https://t.me/${telegram.slice(1)}`;
+    console.log(telegramUrl);
   
     return (
       <div className="fixed top-0 right-0 bottom-0 left-0 z-50 flex items-center justify-center bg-orange-400 bg-opacity-30 overflow-auto">
-        <div className="h-[95vh] absolute bg-white p-6 rounded-md w-full max-w-screen-md overflow-hidden">
+        <div className="h-full absolute bg-white p-6 rounded-md w-full max-w-screen-md overflow-hidden">
           <div className="flex justify-end">
             <button
               className="text-gray-600 hover:text-gray-800 focus:outline-none"
               onClick={onClose}
             >
-              <span className="text-4xl m-5">&times;</span>
+              <span className="text-2xl">&times;</span>
             </button>
           </div>
           <div className="overflow-auto max-h-[80vh]"> {/* Adjust max height as needed */}
             <h3 className="text-xl font-semibold mb-4">{firstName + lastName}</h3>
             {/* make the font bolder */}
             <p className="text-orange-500">Email: <span className='text-black'>{email}</span></p>
+            <p className="text-orange-500">Telegram Handle: <span className='text-black'>{telegram  }</span></p>
             <p className="text-orange-500">First Name: <span className='text-black'>{firstName}</span></p>
             <p className="text-orange-500">Last Name: <span className='text-black'>{lastName}</span></p>
             <p className="text-orange-500">School Address: <span className='text-black'>{schoolAddress}</span></p>
             <p className="text-orange-500">Vehicle Capacity: <span className='text-black'>{vehicleCapacity}</span></p>
             <p className="text-orange-500">Phone Number: <span className='text-black'>{phoneNumber}</span></p>
             <p className="text-orange-500">Address: <span className='text-black'>{address}</span></p>
-            <p className="text-orange-500">Liscence Number: <span className='text-black'>{liscence}</span></p>
-
   
             {/* Images with max width to prevent overflow */}
             <p className="text-orange-500 text-center text-lg">Libre Image</p>
             <img className="max-w-full h-auto mb-5 mt-5" src={libreUrl} alt="" />
             <p className="text-orange-500 text-center text-lg mb-5 mt-5">Business Liscence: </p>
             <img className="max-w-full h-auto" src={businessUrl} alt="" />
+            <p className="text-orange-500 text-center text-lg mb-5 mt-5">Liscence Image: </p>
+            <img className="max-w-full h-auto" src={liscence} alt="" />
             <p className="text-orange-500 text-center text-lg mb-5 mt-5">Photo Image: </p>
             <img className="max-w-full h-auto" src={photoUrl} alt="" />
             <p className="text-orange-500 text-center text-lg mb-5 mt-5">ID Image: </p>
             <img className="max-w-full h-auto" src={idUrl} alt="" />
             <p className="text-orange-500 text-center text-lg mb-5 mt-5">Vehicle Image: </p>
             <img className="max-w-full h-auto" src={vehicleUrl} alt="" />
+          <div className="flex space-x-4 mt-5">
+          <a
+        href={telegramUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <button className="bg-orange-500 hover:bg-orange-600 text-white py-2 px-4 rounded">
+          Accept
+        </button>
+      </a>
+      <button   onClick={onClose} className="bg-black hover:bg-gray-800 text-white py-2 px-4 rounded">
+        Reject
+      </button>
+    </div>
+    <div className="mt-3 flex items-center">
+      <div className="mt-3 text-sm text-orange-500">
+      If you accept the user please click the link down below and the take the time to send it to user, Click "Accept" to navigate to the user's profile:
+      <br />
+      <a
+        className="underline hover:text-orange-600 cursor-pointer"
+      >
+        https://t.me/+vlwHUPb5j4g2ODU0 
+      </a>
+    </div>
+    </div>
           </div>
         </div>
       </div>
@@ -49,7 +78,7 @@ const SimpleModal = ({ isOpen, onClose, email, firstName, lastName, schoolAddres
   };
   
 
-const DriverCard = ({key, email, lastName,firstName,businessUrl,idUrl,libreUrl,liscence,photoUrl, schoolAddress,vehicleCapacity,vehicleUrl, phoneNumber, address, }) => {
+const DriverCard = ({key, email, lastName,firstName,businessUrl,idUrl,libreUrl,liscence,photoUrl, schoolAddress,vehicleCapacity,vehicleUrl, phoneNumber, address,telegram }) => {
     const [isModalVisible, setModalVisibility] = useState(false);
 
     const toggleModal = () => {
@@ -71,6 +100,7 @@ const DriverCard = ({key, email, lastName,firstName,businessUrl,idUrl,libreUrl,l
     <p class="block font-sans text-base antialiased font-light leading-relaxed text-inherit">
       Email: {email}
     </p>
+
   </div>
   <div class="p-6 pt-0">
     <button
@@ -93,7 +123,8 @@ const DriverCard = ({key, email, lastName,firstName,businessUrl,idUrl,libreUrl,l
                 schoolAddress= {schoolAddress}
                 vehicleCapacity= {vehicleCapacity}
                 vehicleUrl={vehicleUrl}
-                address={address}/>
+                address={address}
+                telegram={telegram}/>
 </div>
   )
 }

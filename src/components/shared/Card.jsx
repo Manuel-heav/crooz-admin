@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 
 
-const SimpleModal = ({ isOpen, onClose, email, grade, parentIdUrl, phoneNumber, schoolAddress, studentIdUrl, studentPhotoUrl, studentsLastName, studentsName }) => {
+const SimpleModal = ({ isOpen, onClose, email, grade, parentIdUrl, phoneNumber, schoolAddress, studentIdUrl, studentPhotoUrl, studentsLastName, studentsName, telegram }) => {
   if (!isOpen) {
     return null;
   }
+  let telegramUrl = `https://t.me/${telegram.slice(1)}`;
 
   return (
     <div className="fixed top-0 right-0 bottom-0 left-0 z-50 flex items-center justify-center bg-orange-400 bg-opacity-30 overflow-auto">
@@ -25,6 +26,7 @@ const SimpleModal = ({ isOpen, onClose, email, grade, parentIdUrl, phoneNumber, 
           <p className="text-orange-500">Student's Name: <span className='text-black'>{studentsName + " " + studentsLastName}</span></p>
           <p className="text-orange-500">Phone Number: <span className='text-black'>{phoneNumber}</span></p>
           <p className="text-orange-500">School Address: <span className='text-black'>{schoolAddress}</span></p>
+          <p className="text-orange-500">Telegram Handle: <span className='text-black'>{telegram}</span></p>
           {/* Images with max width to prevent overflow */}
           <p className="text-orange-500 text-center text-lg">Parent ID</p>
           <img className="max-w-full h-auto mb-5 mt-5" src={parentIdUrl} alt="" />
@@ -32,13 +34,39 @@ const SimpleModal = ({ isOpen, onClose, email, grade, parentIdUrl, phoneNumber, 
           <img className="max-w-full h-auto" src={studentIdUrl} alt="" />
           <p className="text-orange-500 text-center text-lg mb-5 mt-5">Student Photo: </p>
           <img className="max-w-full h-auto" src={studentPhotoUrl} alt="" />
+
+          <div className="flex space-x-4 mt-5">
+          <a
+        href={telegramUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <button className="bg-orange-500 hover:bg-orange-600 text-white py-2 px-4 rounded">
+          Accept
+        </button>
+      </a>
+      <button  onClick={onClose} className="bg-black hover:bg-gray-800 text-white py-2 px-4 rounded">
+        Reject
+      </button>
+    </div>
+      <div className="mt-3 flex items-center">
+      <div className="mt-3 text-sm text-orange-500">
+      If you accept the user please click the link down below and the take the time to send it to user, Click "Accept" to navigate to the user's profile:
+      <br />
+      <a
+        className="underline hover:text-orange-600 cursor-pointer"
+      >
+        https://t.me/+XeO6QbISziowYjg0  
+      </a>
+    </div>
+    </div>
         </div>
       </div>
     </div>
   );
 };
 
-const Card = ({email, grade, phoneNumber, schoolAddress, studentsName, studentsLastName, parentIdUrl, studentIdUrl, studentPhotoUrl}) => {
+const Card = ({email, grade, phoneNumber, schoolAddress, studentsName, studentsLastName, parentIdUrl, studentIdUrl, studentPhotoUrl, telegram}) => {
   const [isModalVisible, setModalVisibility] = useState(false);
 
     const toggleModal = () => {
@@ -77,7 +105,8 @@ const Card = ({email, grade, phoneNumber, schoolAddress, studentsName, studentsL
                 studentIdUrl={studentIdUrl}
                 studentPhotoUrl={studentPhotoUrl}
                 studentsLastName={studentsLastName}
-                studentsName={studentsName}/>
+                studentsName={studentsName}
+                telegram={telegram}/>
 </div>
   )
 }

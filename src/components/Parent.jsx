@@ -23,12 +23,14 @@ const Parent = () => {
   }, []);
 
   return (
-    <div className='overflow-hidden bg-orange-300 h-[100vh]'>
+    <div className='bg-orange-300 h-[100vh] overflow-scroll'>
       <SideBar />
       <div className="w-2/3 mt-20 p-4 sm:ml-64">
         <div className="grid grid-cols-1 sm:grid-cols-2">
           {data.length === 0 ? (
-            <p>There's no data to show</p>
+            <div className="flex items-center justify-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-b-4 border-orange-500"></div>
+          </div>
           ) : (
             data.map((item) => (
               <Card
@@ -41,6 +43,7 @@ const Parent = () => {
                 studentIdUrl={item.studentIdUrl}
                 studentPhotoUrl={item.studentPhotoUrl}
                 studentsLastName={item.studentsLastName}
+                telegram={item.telegram}
                 studentsName={item.studentsName}
               />
             ))
